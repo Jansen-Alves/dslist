@@ -1,35 +1,27 @@
 package com.devsuperior.dslist.dto;
 
-import com.devsuperior.dslist.entities.Game;
-import com.devsuperior.dslist.projections.GameMinProjection;
+import org.springframework.beans.BeanUtils;
 
-public class GameMinDTO {
+import com.devsuperior.dslist.entities.Game;
+
+public class GameDTO {
 	private long id;
 	private String title;
 	private int year;
+	private String genre;
+	private String platforms;
+	private double score;
 	private String imgUrl;
 	private String shortDescription;
+	private String longDescription;
 	
-	public GameMinDTO() {
+	public GameDTO() {
 		
 	}
-
-	public GameMinDTO(Game entity) {
-		super();
-		this.id = entity.getId();
-		this.title = entity.getTitle();
-		this.year = entity.getYear();
-		this.imgUrl = entity.getImgUrl();
-		this.shortDescription = entity.getShortDescription();
-	}
 	
-	public GameMinDTO(GameMinProjection projection) {
-		super();
-		this.id = projection.getId();
-		this.title = projection.getTitle();
-		this.year = projection.getYear();
-		this.imgUrl = projection.getImgUrl();
-		this.shortDescription = projection.getShortDescription();
+	public GameDTO(Game entity) {
+		BeanUtils.copyProperties(entity, this);
+		
 	}
 
 	public long getId() {
@@ -56,6 +48,30 @@ public class GameMinDTO {
 		this.year = year;
 	}
 
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public String getPlatforms() {
+		return platforms;
+	}
+
+	public void setPlatforms(String platforms) {
+		this.platforms = platforms;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
+	}
+
 	public String getImgUrl() {
 		return imgUrl;
 	}
@@ -71,8 +87,14 @@ public class GameMinDTO {
 	public void setShortDescription(String shortDescription) {
 		this.shortDescription = shortDescription;
 	}
-	
-	
+
+	public String getLongDescription() {
+		return longDescription;
+	}
+
+	public void setLongDescription(String longDescription) {
+		this.longDescription = longDescription;
+	}
 	
 	
 }
